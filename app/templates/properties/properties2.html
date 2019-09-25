@@ -1,0 +1,140 @@
+
+<script type="text/javascript">
+	$(function() {
+		function propstate(flag) {
+			if (flag===0){
+				$('#node_properties').show();
+				$('#frame_properties').hide();
+			} else {
+				$('#node_properties').hide();
+				$('#frame_properties').show();
+			}
+		}
+
+
+
+
+		function RunThreeJS() {
+			scene = new THREE.Scene();
+
+			//create and locate camera
+			camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+			camera.position.z = 5;
+
+			//create renderer//size renderer//append renderer
+			renderer = new THREE.WebGLRenderer( { antialias: true } );
+			renderer.setSize( window.innerWidth/2, window.innerHeight/2 );
+			$("#canvas").append(renderer.domElement);
+
+			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+			var material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+			var cube = new THREE.Mesh( geometry, material );
+			scene.add( cube );
+			cube.position.x = 1;
+			cube.position.y = 1;
+			cube.position.z = 1;
+
+			//animation frames
+			animate = function (){
+				//recursive function
+				requestAnimationFrame(animate);
+				//render the scene and camera
+			renderer.render(scene,camera);
+
+			}
+
+			animate()
+
+
+			console.log(e);
+		}
+
+
+
+		propstate(1);
+		RunThreeJS();
+
+		//assign joint coordinates
+		var myData;
+		$("input#sub").bind("click",function() {
+			myData = {
+				x: $('input#x').val(),
+				y: $('input#y').val(),
+				z: $('input#z').val(),
+				pt_label: $('input#pt_label').val()
+			};
+			$.ajax({
+				type: 'POST', 
+				url:"/test",
+				contentType: 'application/json;charset=UTF-8',
+				data : JSON.stringify(myData,null,'\t'),
+				success: function (e) {
+				RunThreeJS();
+
+				},
+				error: function (error) {
+					console.log(error);
+				}
+			});//closes ajax call
+		});//closes binding function
+	});//closes jquery
+</script>
+<div id="properties">
+	<div id="node_properties" class="node_properties">
+		<p>Joint Label: 5</p>
+		<p>Joint Coordinates:</p>
+		<p>	x: 10.0</p>
+		<p>	y: 10.0</p>
+		<p>	z: 0.0</p>
+		<p>Joint Boundary Conditions</p>
+		<p>Ux: Fixed</p>
+		<p>Uy: Fixed</p>
+		<p>Uz: Fixed</p>
+		<p>Rx: Pinned</p>
+		<p>Ry: Pinned</p>
+		<p>Rz: Pinned</p>
+		<p>Joint Applied Forces</p>
+		<p>Fx: 10</p>
+		<p>Fy: 10</p>
+		<p>Fz: 10</p>
+		<p>Mx: 10</p>
+		<p>My: 10</p>
+		<p>Mz: 10</p>
+	
+	<form id="node" class="node_properties">
+		point label:<input id='pt_label' type="text" name="pt_label"><br>
+    	x:<input id='x' type="text" name="x"><br>
+		y:<input id='y' type="text" name="y"><br>
+		z:<input id='z' type="text" name="z"><br>
+		<input id="sub" type="submit" name="hello" value="Create New Joint">
+	</form>
+	</div>
+
+	<div id="frame_properties" class="frame_properties">
+		<p>Frame Label: 5</p>
+		<p>Section: W10x12</p>
+		<p>Material: A992</p>
+		<p>Length: 10.0</p>
+		<p>Rotation alpha: 15</p>
+		<p>joints:</p>
+		<p>i Label: 2</p>
+		<p>j Label: 5</p>
+		<p>joint i coords:</p>
+		<p>x: 0</p>
+		<p>y: 0</p>
+		<p>z: 0</p>
+		<p>joint j coords:</p>
+		<p>x: 10</p>
+		<p>y: 10</p>
+		<p>z: 0</p>
+		<p>Releases: TBD</p>
+
+
+	<form id="frame">
+		frame label:<input id='frame_label' type="text" name="frame_label"><br>
+    	i joint:<input id='i_joint' type="text" name="i_joint"><br>
+		j joint:<input id='j_joint' type="text" name="j_joint"><br>
+		<input id="sub" type="submit" name="hello" value="Create New Frame">
+	</form>
+	</div>
+</div>

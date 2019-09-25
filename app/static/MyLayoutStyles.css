@@ -1,0 +1,130 @@
+
+#cont {
+	vertical-align:top;
+	height:600px;
+	border:0px;
+	margin: auto;
+	padding: 0;
+	vertical-align:top;
+
+}
+
+#menu {
+	vertical-align:top;
+	height:30px;
+	width: auto;
+	border:0px;
+	margin: 5px;
+	padding: 5px;
+	background-color: grey;
+	font-family: sans-serif;
+	font-size: 8pt;
+}
+
+#properties {
+	overflow: scroll;
+	display: inline-block;
+	width: 200px;
+	height: 600px;
+	background-color: grey;
+	margin-left: 5px;
+	font-family: sans-serif;
+	font-size: 8pt;
+	vertical-align:top;
+}
+#canvas {
+	display: inline-block;
+	width: 800px;
+	height: 600px;
+	background-color: grey;
+	font-family: sans-serif;
+	font-size: 8pt;	
+	vertical-align:top;
+}
+
+#results {
+	overflow: scroll;
+	display: inline-block;
+	width: 200px;
+	height: 600px;
+	background-color: grey;
+	margin-left: 5px;
+	font-family: sans-serif;
+	font-size: 8pt;
+	vertical-align:top;
+}
+
+
+.menuItem {
+	background-color: lightblue;
+	width: 60px;
+	height: 50%;
+	vertical-align: top;
+	margin-top:5px;
+	margin-bottom: 5px;
+	display: inline-block;
+	border-radius: 1px;
+	text-align: center;
+}
+
+li {
+	background-color: lightgrey;
+	width: max-content;
+	margin-top: 5px;
+	margin-left: 5px;
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border-radius: 1px;
+}
+
+li.folder {
+	background-color: lightblue;
+	width: max-content;
+	margin-top: 5px;
+	margin-left: 5px;
+	padding-right: 5px;
+	padding-left: 5px;
+	border-radius: 1px;
+}
+
+.button {
+	background-color: white;
+	display: inline;
+	border-radius:1px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+.name {
+	background-color: white;
+	display: inline;
+	border-radius:1px;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.propbox {
+	background-color: white;
+	display: inline;
+	border-radius:1px;
+	padding-left: 2px;
+	padding-right: 2px;
+
+}
+
+
+ul {
+	margin-left: 10;
+	padding: 1;
+	padding-right: 0;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border-left: 1px solid lightgrey;
+	border-right:0px;
+}
+
+ul.master {
+	padding:0;
+	border: 0px;
+}

@@ -1,0 +1,18 @@
+<!--this is my base template-->
+<html>
+	<head>
+		{% block head %}
+		<link rel="stylesheet" type="text/css" href="/static/MyLayoutStyles.css">
+		<title>{% block title %}{% endblock %} - My Webpage</title>
+		{% endblock %}
+	</head>
+	<body>
+		<div id="content">{% block content %}{% endblock %}</div>
+		<div id="footer">
+			{% block footer %}
+			&copy; Copyright 2008 by <a></a>
+			{% endblock %}
+		</div>
+		<div id="included">{% include 'myref.html' %}</div>
+	</body>
+</html>

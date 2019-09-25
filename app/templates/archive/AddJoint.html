@@ -1,0 +1,23 @@
+<html>
+   <head></head>
+   <body>
+      <form action="" method="post">
+         {{form.hidden_tag()}}
+         <p>
+         {{ form.x.label }}<br>
+         {{ form.x(size=32) }}
+         </p>
+         <p>
+         {{ form.y.label }}<br>
+         {{ form.y(size=32) }}
+         </p>
+         <p>
+         {{ form.z.label }}<br>
+         {{ form.z(size=32) }}
+         </p>
+         <p>
+         {{ form.submit() }}
+         </p>
+      </form>
+   </body>
+</html>

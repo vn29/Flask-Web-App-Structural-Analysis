@@ -1,0 +1,114 @@
+<html>
+    <head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	    <style>
+	        body {
+	            font-family: Monospace;
+	            background-color: #f0f0f0;
+	            margin: 0px;
+	            overflow: hidden;
+	        }
+	        #info {
+	            position: absolute;
+	            top: 0px;
+	            width: 100%;
+	            padding: 5px;
+	            font-family: Monospace;
+	            font-size: 13px;
+	            text-align: center;
+	            color: #ffffff;
+	        }
+	        a {
+	            color: #ffffff;
+	        }
+	    </style>
+    </head>
+    <body>
+    	<hr>
+        <div id="container"></div>
+        <script src="/static/three.js"></script>
+        <script src="/static/OrbitControls.js"></script>
+        <script src="/static/dat.gui.min.js"></script>
+        <script src="/static/stats.min.js"></script>
+		<script>
+			var container, stats, gui;
+			var camera, scene, renderer;
+			var mesh, geometry;
+			init();
+			animate();
+
+			function addLine(){
+	          var material = new THREE.LineBasicMaterial({color: 0xffffff});
+	          material.linewidth = 10;
+	          var geometry = new THREE.Geometry();
+	          geometry.vertices.push(
+	            new THREE.Vector3( -10, 0, 0 ),
+	            new THREE.Vector3( 0, 10, 0 ),
+	            new THREE.Vector3( 10, 0, 0 )
+	          );
+	          var line = new THREE.Line( geometry, material );
+	          scene.add( line );
+	        }
+
+			function addArrow(){
+	          var dir = new THREE.Vector3( 100, 200, 0 );
+	          //normalize the direction vector (convert to vector of length 1)
+	          dir.normalize();
+
+	          var origin = new THREE.Vector3( 0, 0, 0 );
+	          var length = 10;
+	          var hex = 0xffff00;
+	          var arrowHelper = new THREE.ArrowHelper( dir, origin, length, hex );
+	          scene.add( arrowHelper );
+	      	}
+
+			function addMesh() {
+			    if ( mesh !== undefined ) {
+			        scene.remove( mesh );
+			        geometry.dispose();
+			    }
+			    addLine();
+			    addArrow();
+
+			    var spriteMap = new THREE.TextureLoader().load( "/static/circle.png" );
+				var spriteMaterial = new THREE.SpriteMaterial( { map: spriteMap, color: 0xffffff } );
+				spriteMaterial.sizeAttenuation = false
+				var sprite = new THREE.Sprite( spriteMaterial );
+				sprite.scale.set(.01,.01,1)
+				scene.add( sprite );
+			}
+			function init() {
+			    container = document.getElementById( 'container' );
+			    camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+			    camera.position.z = 500;
+			    scene = new THREE.Scene();
+			    addMesh();
+			    //
+			    renderer = new THREE.WebGLRenderer( { antialias: true } );
+			    renderer.setPixelRatio( window.devicePixelRatio );
+			    renderer.setSize( window.innerWidth, window.innerHeight );
+			    container.appendChild( renderer.domElement );
+			    //
+			    var controls = new THREE.OrbitControls( camera, renderer.domElement );
+			    //
+			    window.addEventListener( 'resize', onWindowResize, false );
+			}
+
+			function onWindowResize() {
+			    camera.aspect = window.innerWidth / window.innerHeight;
+			    camera.updateProjectionMatrix();
+			    renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+			//
+			function animate() {
+			    requestAnimationFrame( animate );
+			    render();
+			    stats.update();
+			}
+			function render() {
+			    renderer.render( scene, camera );
+			}
+		</script>
+    </body>
+</html>

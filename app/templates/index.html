@@ -1,0 +1,22 @@
+<!--this is my base template-->
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/static/MyLayoutStyles.css">
+		<link rel="stylesheet" type="text/css" href="/static/jquery-ui.css">
+		<script src="/static/jquery-3.3.1.min.js"></script>
+  		<script src="/static/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+  		<script type="text/javascript" src="/static/three.js"></script>
+
+
+	</head>
+	<body>
+		<div id="cont">
+			<div id="menu">{% include '/menu/menu.html' %}</div>		
+			<div id="properties">{% include '/properties/properties2.html' %}</div>	
+			<div id="canvas">{% include '/canvas/canvas.html' %}</div>	
+			<div id="results">{% include '/results/results.html' %}</div>
+			<div id="default-widgets">{% include '/default-widgets/Button.html' %}</div>
+		</div>
+
+	</body>
+</html>

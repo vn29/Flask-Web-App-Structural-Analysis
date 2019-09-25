@@ -1,0 +1,24 @@
+<script>
+$( function() {
+  $( ".widget input[type=submit], .widget a, .widget button" ).button();
+  $( "button, input, a" ).click( function( event ) {
+    event.preventDefault();
+  } );
+} );
+</script>
+
+<div class="widget">
+<h1>Widget Buttons</h1>
+<button>A button element</button>
+
+<input type="submit" value="A submit button">
+
+<a href="#">An anchor</a>
+</div>
+<h1>CSS Buttons</h1>
+<button class="ui-button ui-widget ui-corner-all">A button element</button>
+ 
+<input class="ui-button ui-widget ui-corner-all" type="submit" value="A submit button">
+ 
+<a class="ui-button ui-widget ui-corner-all" href="#">An anchor</a>
+ 
